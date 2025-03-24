@@ -55,5 +55,3 @@ go test ./tests -v
 ```
 
 ---
-
-No database, no UI. Just a clean API to manage alarms. Built for simplicity and easy testing. 😊
