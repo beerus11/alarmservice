@@ -1,72 +1,59 @@
-# Alarm Microservice (GoLang + Gin)
+# Alarm Microservice (Go + Gin)
 
-A lightweight alarm and notification microservice with in-memory store, REST APIs, and periodic notification support.
+This is a simple microservice built using Go and the Gin framework. It manages alarms with basic CRUD operations and notifies if certain conditions are met. The data is stored in memory (no database).
 
-## 🛠 Setup Instructions
+## How to Run
 
-1. **Clone the repo**
-```bash
-git clone <your-repo-url>
-cd alarmservice
-```
+1. Make sure you have Go installed (version 1.18 or above).
+2. Clone the repo and navigate to the folder.
+3. Run the following commands:
 
-2. **Install dependencies**
 ```bash
 go mod tidy
-```
-
-3. **Run the service**
-```bash
 go run main.go
 ```
 
-Service runs at `http://localhost:8080`
+The server will start at `http://localhost:8080`.
 
-## 📮 API Endpoints
+## Available APIs
 
-### 🔸 Create Alarm
+### Create an Alarm
 ```bash
 curl -X POST http://localhost:8080/alarm \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "High Memory",
-    "condition": "mem > 90"
-}'
+  -d '{"name": "High CPU", "condition": "cpu > 90"}'
 ```
 
-### 🔸 Get All Alarms
+### Get All Alarms
 ```bash
 curl http://localhost:8080/alarm
 ```
 
-### 🔸 Get Alarm by ID
+### Get Alarm by ID
 ```bash
-curl http://localhost:8080/alarm/<id>
+curl http://localhost:8080/alarm/<alarm-id>
 ```
 
-### 🔸 Update Alarm
+### Update an Alarm
 ```bash
-curl -X PUT http://localhost:8080/alarm/<id> \
+curl -X PUT http://localhost:8080/alarm/<alarm-id> \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "Updated Alarm",
-    "condition": "cpu > 95",
-    "state": "ACKED"
-}'
+  -d '{"name": "Updated Alarm", "condition": "mem > 95", "state": "ACKED"}'
 ```
 
-### 🔸 Delete Alarm
+### Delete an Alarm
 ```bash
-curl -X DELETE http://localhost:8080/alarm/<id>
+curl -X DELETE http://localhost:8080/alarm/<alarm-id>
 ```
 
-## 🧪 Run Unit Tests
+## Running Tests
+
+Run the following command to execute unit tests:
+
 ```bash
 go test ./tests -v
 ```
 
-## ✨ Features
-- RESTful CRUD APIs
-- Periodic Notification Checker
-- ACK support to reduce notification frequency
-- In-memory store
+---
+
+No database, no UI. Just a clean API to manage alarms. Built for simplicity and easy testing. 😊
